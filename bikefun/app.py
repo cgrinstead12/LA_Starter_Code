@@ -29,6 +29,9 @@ url = 'mongodb://admin:USCbootcamp2018@ds141633.mlab.com:41633/la_events'
 client = MongoClient(url)
 db = client['la_events']
 
+app.config["MONGO_URI"] = "mongodb://admin:USCbootcamp2018@ds141633.mlab.com:41633/la_events"
+mongo = PyMongo(app)
+
 
 @app.route("/")
 def index():
