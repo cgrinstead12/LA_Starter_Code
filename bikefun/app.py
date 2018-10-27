@@ -20,6 +20,7 @@ import time
 import shutil
 from datetime import datetime as dt
 from pymongo import MongoClient
+from flask_pymongo import PyMongo
 #import scrape_metro
 #import scrape_events
 
