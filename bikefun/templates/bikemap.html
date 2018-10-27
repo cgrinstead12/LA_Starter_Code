@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike Map</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"> -->
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+     <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+
+<!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../LeafletMap/static/css/style.css">
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+     <!-- Icons -->
+  <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="static/css/leaflet.extra-markers.min.css">
+  
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+  <link rel="icon" href="https://news.nd.edu/assets/245216/1200x630/limebike_logo_800x440.jpg">
+
+  <!-- Our second CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="static/css/style2.css"> -->
+
+  <!-- d3 JavaScript -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+
+        <nav style="background: black">
+          <div class="menu-icon">
+            <i class=" fa fa-bars fa-2x"></i>
+          </div>
+          
+          <div class="logo"> <img src="{{ url_for('static', filename='images/logo.png')}}" alt="metro logo" style="width: 100%" >  </div>
+          <div class="menu">
+            <ul>
+        <li><a href="index.html"></a></li>
+              <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="index.html"></a></li>
+        
+              <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+        <li><a href="index.html"></a></li> 
+
+                <li><a href="index.html"></a></li>
+        
+              <li><a href="{{ url_for('bike_maps') }}">LA Metro Bike Map</a></li>
+
+                      <li><a href="index.html"></a></li>
+              <li><a href="{{ url_for('plot_1') }}">Analytics</a></li>
+            </ul>
+          </div>
+      </nav>
+     
+	
+    
+	<script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+  
+   <div id="map"></div>
+ 
+	</header>
+
+
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    
+  
+   <!--  <script src="data.js"></script> -->
+    <script src="plots.js"></script>
+<div id="plot1"></div>
+    
+    <div id="plot2"></div>
+    <div id="plot3"></div>
+    <div id="plot4"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="plot5-1"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="plot5-2"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="plot5-3"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="plot5-4"></div>
+      </div>
+    </div>
+    <div id="plot6"></div>
+    <div id="plot7"></div>
+    <div id="plot8"></div>
+    <div id="plot8"></div>
+
+
+
+<div class="content">
+        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
+    In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+    </p>
+    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
+    In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+    </p>
+    
+
+</div><!--content-->   
+<!-- API key -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+      <!-- JS  -->
+    <script type="text/javascript" src="static/js/logic.js"></script>
+
+    <!-- API key -->
+    <script type="text/javascript" src="../LeafletMap/static/js/config.js"></script>
+      <!-- JS  -->
+    <script type="text/javascript" src="../LeafletMap/static/js/logic.js"></script>
+<script>
+//Menu toggle-effect
+$(document).ready(function(){
+  $(".menu-icon").on("click",function(){
+    $("nav ul").toggleClass("showing");
+  });
+});
+
+//Scrolling Effect
+
+$(window).on('scroll', function(){
+  if($(window).scrollTop()) {
+    $('nav').addClass('black');
+  }
+  /*else{
+    $('nav').removeClass('black')
+  }*/
+})
+
+    </script>
+  </body>
+</html>
